@@ -16,27 +16,27 @@ const useStyles = makeStyles({
     maxWidth: 250,
     border: "black .5px solid",
     display: "flex",
-    margin: "18px auto",
-    justifyContent: "space-between",
+    margin: "4px auto",
+  
     alignItems: "center",
     flexDirection: "column",
    
   },
   media: {
     media: {
-        minHeight: 150,
-        maxHeight: 150,
-      },
+      height: 140,
+    },
   },
 });
 
-export default function ({ product }) {
-  const { img, title, id, stock , price, ticker, link} = product;
+export default function ( { title, id, stock ,condition, price, ticker,img, link} ) {
 
-
-  var name = title;
   const classes = useStyles();
-
+if(condition==="new"){
+condition = "nuevo"
+} else {
+  condition = "usado";
+}
 
   return (
     <div>
@@ -51,13 +51,13 @@ export default function ({ product }) {
           <CardMedia src={img} alt="imagen de producto" />
           <CardContent>
             <Typography gutterBottom variant="h6" component="h3">
-              {name}
+              {title}
             </Typography>
             <Typography gutterBottom variant="h6" component="h3">
-              {}
+              {condition}
             </Typography>
-            <Typography gutterBottom variant="h7" component="h3" marginTop="100px">
-              {price} {ticker} - {stock === 0 ? "SIN STOCK" : stock === 1 ? "1 Disponible" : stock + " Disponibles"}
+            <Typography gutterBottom variant="h6" component="h3" >
+              {price} {ticker} - {stock === 0 ? "0 stock" : "Disponible"}
             </Typography>
           </CardContent>
         </CardActionArea>
