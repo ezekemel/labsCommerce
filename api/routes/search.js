@@ -10,10 +10,14 @@ router.route('/')
         .then(response => {            
             const products = response.data.results.map((e) => {
               return {
+                id: e.id,
                 title: e.title,
                 price: e.price,
-                money: e.currency_id,               
-                condition: e.condition
+                ticker: e.currency_id,               
+                condition: e.condition,
+                img: e.thumbnail,
+                available: e.available_quantity,
+                link: e.permalink
               }
             });
             res.send(products);
