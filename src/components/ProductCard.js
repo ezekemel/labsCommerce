@@ -7,9 +7,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import Link from '@material-ui/core/Link';
-
-
+import Link from "@material-ui/core/Link";
 
 const useStyles = makeStyles({
   root: {
@@ -17,10 +15,9 @@ const useStyles = makeStyles({
     border: "black .5px solid",
     display: "flex",
     margin: "4px auto",
-  
+
     alignItems: "center",
     flexDirection: "column",
-   
   },
   media: {
     media: {
@@ -29,14 +26,22 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ( { title, id, stock ,condition, price, ticker,img, link} ) {
-
+export default function ({
+  title,
+  id,
+  stock,
+  condition,
+  price,
+  ticker,
+  img,
+  link,
+}) {
   const classes = useStyles();
-if(condition==="new"){
-condition = "nuevo"
-} else {
-  condition = "usado";
-}
+  if (condition === "new") {
+    condition = "nuevo";
+  } else {
+    condition = "usado";
+  }
 
   return (
     <div>
@@ -56,20 +61,19 @@ condition = "nuevo"
             <Typography gutterBottom variant="h6" component="h3">
               {condition}
             </Typography>
-            <Typography gutterBottom variant="h6" component="h3" >
+            <Typography gutterBottom variant="h6" component="h3">
               {price} {ticker} - {stock === 0 ? "0 stock" : "Disponible"}
             </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions>
-        <Button color="primary">
-          <Link href={link} target="_blank">
-            Ver más
-          </Link>
-        </Button>
+          <Button color="primary">
+            <Link href={link} target="_blank">
+              Ver más
+            </Link>
+          </Button>
         </CardActions>
       </Card>
     </div>
-  
   );
 }
