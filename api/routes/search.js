@@ -6,7 +6,8 @@ const axios = require('axios').default;
 router.route('/')
     .get((req,res)=> {
         const { query } = req.query;
-        axios.get("https://api.mercadolibre.com/sites/MLA/search?q=" + query)
+      
+        axios.get("https://api.mercadolibre.com/sites/MLA/search?q=", { params: { q: query } })
         .then(response => {            
             const products = response.data.results.map((e) => {
               return {

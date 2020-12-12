@@ -15,17 +15,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Catalog() {
+export default function Catalog({products}) {
   const classes = useStyles();
-  const [products, setProducts] = useState([]);
+  //const [products, setProducts] = useState([]);
 
-  useEffect(() => {
-    // Actualiza el título del documento usando la API del navegador
+  /*useEffect(() => {
     axios.get("/search?q=iphone").then(response => {
       var productsArray = response.data;
       setProducts(productsArray);
     })
-  });
+  });*/
  
 
   return (
@@ -45,7 +44,7 @@ export default function Catalog() {
               </Grid> )):(
             <React.Fragment>
               <Grid item>
-                No products
+                Puede buscar los productos
               </Grid>
             </React.Fragment>
           ) }

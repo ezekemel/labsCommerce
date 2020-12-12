@@ -8,6 +8,7 @@ import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -68,12 +69,15 @@ export default function SearchAppBar({setProducts}) {
   const classes = useStyles();
 
    const [query, setQuery] = useState("");
-   console.log(query)
-
-
+  
 
    function handleRequestSearch (){
-   console.log(query)
+  
+   axios.get("/search/?query=" + query).then(response => {
+    var productsArray = response.data;
+    setProducts(productsArray);
+    
+  })
 
    }
 

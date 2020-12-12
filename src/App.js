@@ -1,17 +1,18 @@
 import './App.css';
 import Searchbar from "./components/Searchbar.js"
-import ProductCard from "./components/ProductCard"
 import Catalog from "./components/Catalog"
-import products from "./data/products.json"
+import React, { useState, useEffect } from 'react';
 
 
 function App() {
 
+  const [products, setProducts] = useState([]);
+
   return (
 
     <div >
-      <Searchbar/>
-      <Catalog />
+      <Searchbar setProducts={setProducts}/>
+      <Catalog products={products}/>
      
     </div>
   );
