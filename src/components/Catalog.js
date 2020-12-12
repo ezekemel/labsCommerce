@@ -2,7 +2,6 @@ import ProductCard from "./ProductCard";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,18 +12,13 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     color: theme.palette.text.secondary,
   },
+  image: {
+    maxWidth: "100%",
+  },
 }));
 
 export default function Catalog({ products }) {
   const classes = useStyles();
-  //const [products, setProducts] = useState([]);
-
-  /*useEffect(() => {
-    axios.get("/search?q=iphone").then(response => {
-      var productsArray = response.data;
-      setProducts(productsArray);
-    })
-  });*/
 
   return (
     <div className={classes.root}>
@@ -45,7 +39,14 @@ export default function Catalog({ products }) {
           ))
         ) : (
           <React.Fragment>
-            <Grid item>Puede buscar los productos</Grid>
+            <Grid item>
+              <img
+                className={classes.image}
+                src="/tuBuscador.png"
+                alt="Buscador"
+              />
+              ;
+            </Grid>
           </React.Fragment>
         )}
       </Grid>
