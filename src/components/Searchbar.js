@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
@@ -25,9 +26,9 @@ const useStyles = makeStyles((theme) => ({
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
+    backgroundColor: fade(theme.palette.common.white, 0.20),
     '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
+      backgroundColor: fade(theme.palette.common.white, 0.3),
     },
     marginLeft: 0,
     width: '100%',
@@ -63,8 +64,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchAppBar() {
+export default function SearchAppBar({setProducts}) {
   const classes = useStyles();
+
+   const [query, setQuery] = useState("");
+   console.log(query)
+
+
+
+   function handleRequestSearch (){
+   console.log(query)
+
+   }
 
   return (
     <div className={classes.root}>
@@ -86,13 +97,20 @@ export default function SearchAppBar() {
               <SearchIcon />
             </div>
             <InputBase
-              placeholder="Search…"
+              placeholder="Buscar..."
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
-            />
+              value={query}
+              onChange={e => setQuery(e.target.value)}
+              />
+               <Button variant="outlined" color="inherit" onClick={handleRequestSearch}>
+              <Typography style={{color: "white"}}>
+                Buscar
+              </Typography>
+            </Button>
           </div>
         </Toolbar>
       </AppBar>
