@@ -14,7 +14,8 @@ const useStyles = makeStyles({
     maxWidth: 250,
     border: "black .5px solid",
     display: "flex",
-    margin: "4px auto",
+    margin: "20px auto",
+    maxHeight: 400,
 
     alignItems: "center",
     flexDirection: "column",
@@ -55,13 +56,13 @@ export default function ({
           />
           <CardMedia src={img} alt="imagen de producto" />
           <CardContent>
-            <Typography gutterBottom variant="h6" component="h3">
+            <Typography noWrap gutterBottom variant="h6" component="h3">
               {title}
             </Typography>
-            <Typography gutterBottom variant="h6" component="h3">
+            <Typography gutterBottom variant="h7" component="h3">
               {condition}
             </Typography>
-            <Typography gutterBottom variant="h6" component="h3">
+            <Typography gutterBottom variant="h7" component="h3">
               {price} {ticker} - {stock === 0 ? "0 stock" : "Disponible"}
             </Typography>
           </CardContent>
