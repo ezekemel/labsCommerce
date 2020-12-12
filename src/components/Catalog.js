@@ -1,6 +1,7 @@
 import ProductCard from "./ProductCard";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 import React, { useState, useEffect } from "react";
 
 const useStyles = makeStyles((theme) => ({
@@ -17,11 +18,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Catalog({ products }) {
+export default function Catalog({ products, search }) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
+      {products.length > 0 ? (
+        <Typography variant="h5" component="h4">
+          Resultados para {search}
+        </Typography>
+      ) : (
+        <Typography variant="h1" component="h2"></Typography>
+      )}
       <Grid container>
         {products.length > 0 ? (
           products.map((product) => (

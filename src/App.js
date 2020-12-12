@@ -5,11 +5,12 @@ import React, { useState, useEffect } from "react";
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [search, setSearch] = useState([]);
 
   return (
     <div>
-      <Searchbar setProducts={setProducts} />
-      <Catalog products={products} />
+      <Searchbar setProducts={setProducts} setSearch={setSearch} />
+      <Catalog products={products} search={search} />
     </div>
   );
 }

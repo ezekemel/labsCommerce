@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
 import { fade, makeStyles } from "@material-ui/core/styles";
@@ -14,18 +13,20 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
+
   title: {
     flexGrow: 1,
     display: "none",
+    position: "relative",
+    marginRight: theme.spacing(2),
     [theme.breakpoints.up("sm")]: {
       display: "block",
     },
   },
   search: {
     position: "relative",
+    textAlign: "center",
+    margin: "auto",
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.2),
     "&:hover": {
@@ -65,12 +66,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchAppBar({ setProducts }) {
+export default function SearchAppBar({ setProducts, setSearch }) {
   const classes = useStyles();
 
   const [query, setQuery] = useState("");
 
   function handleRequestSearch() {
+    setSearch(query);
     axios.get("/search/?query=" + query).then((response) => {
       var productsArray = response.data;
       setProducts(productsArray);
@@ -81,16 +83,8 @@ export default function SearchAppBar({ setProducts }) {
     <div className={classes.root}>
       <AppBar position="static" style={{ backgroundColor: "#36486b" }}>
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Lab-Commerce
+            Lite-MeLi
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
