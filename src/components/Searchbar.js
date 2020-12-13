@@ -5,10 +5,8 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
 import { fade, makeStyles } from "@material-ui/core/styles";
-import SortIcon from "@material-ui/icons/Sort";
 import SearchIcon from "@material-ui/icons/Search";
 import axios from "axios";
-import { IconButton } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -67,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SearchAppBar({ setProducts, setSearch }) {
+export default function SearchAppBar({ setProducts, setSearch, setBuscador }) {
   const classes = useStyles();
 
   const [query, setQuery] = useState("");
@@ -77,6 +75,7 @@ export default function SearchAppBar({ setProducts, setSearch }) {
     axios.get("/search/?query=" + query).then((response) => {
       var productsArray = response.data;
       setProducts(productsArray);
+      setBuscador(1);
     });
   }
 
@@ -87,9 +86,6 @@ export default function SearchAppBar({ setProducts, setSearch }) {
           <Typography className={classes.title} variant="h6" noWrap>
             Lite-MeLi
           </Typography>
-          <IconButton aria-controls="simple-menu" aria-haspopup="true">
-            <SortIcon style={{ color: "white" }} />
-          </IconButton>
 
           <div className={classes.search}>
             <div className={classes.searchIcon}>

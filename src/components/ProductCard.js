@@ -70,7 +70,7 @@ export default function ({
         <CardActions>
           <Button color="primary">
             <Link href={link} target="_blank">
-              Ver más
+              Comprar
             </Link>
           </Button>
         </CardActions>
