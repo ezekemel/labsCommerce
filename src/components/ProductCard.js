@@ -27,7 +27,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ({
+export default function ProductCard({
   title,
   id,
   stock,
@@ -59,10 +59,10 @@ export default function ({
             <Typography noWrap gutterBottom variant="h6" component="h3">
               {title}
             </Typography>
-            <Typography gutterBottom variant="h7" component="h3">
+            <Typography gutterBottom variant="h6" component="h3">
               {condition}
             </Typography>
-            <Typography gutterBottom variant="h7" component="h3">
+            <Typography gutterBottom variant="h6" component="h3">
               {price} {ticker} - {stock === 0 ? "0 stock" : "Disponible"}
             </Typography>
           </CardContent>

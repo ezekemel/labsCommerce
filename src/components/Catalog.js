@@ -7,6 +7,7 @@ import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,6 +21,11 @@ const useStyles = makeStyles((theme) => ({
   image: {
     maxWidth: "100%",
   },
+  btn: {
+    "& > *": {
+      margin: theme.spacing(1),
+    },
+  },
 }));
 
 export default function Catalog({ products, search, buscador }) {
@@ -28,10 +34,10 @@ export default function Catalog({ products, search, buscador }) {
   const [list, setList] = useState(products);
   const [value, setValue] = useState("notOrdered");
   const [filter, setFilter] = useState("notFiltered");
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     setList(products);
-    console.log(list);
   }, [products]);
 
   const lowHigh = [...products].sort((a, b) => a.price - b.price);
@@ -115,28 +121,52 @@ export default function Catalog({ products, search, buscador }) {
               </RadioGroup>
             </FormControl>
           </div>
+          <div className={classes.btn}>
+            <Button
+              variant="outlined"
+              color="primary"
+              onClick={() => {
+                setPage(1);
+              }}
+            >
+              Pagina 1
+            </Button>
+            <Button
+              variant="outlined"
+              color="primary"
+              onClick={() => {
+                setPage(2);
+              }}
+            >
+              Pagina 2
+            </Button>
+          </div>
         </div>
       ) : (
         <Typography variant="h1" component="h2"></Typography>
       )}
       <Grid container>
         {list.length > 0 ? (
-          list.map((product) => (
-            <Grid item lg={3}>
-              <ProductCard
-                title={product.title}
-                price={product.price}
-                ticker={product.ticker}
-                stock={product.stock}
-                img={product.img}
-                condition={product.condition}
-                link={product.link}
-              />
-            </Grid>
-          ))
+          list.map((product, i) =>
+            i >= (page - 1) * 30 && i < page * 30 ? (
+              <Grid item lg={3} key={product.id}>
+                <ProductCard
+                  title={product.title}
+                  price={product.price}
+                  ticker={product.ticker}
+                  stock={product.stock}
+                  img={product.img}
+                  condition={product.condition}
+                  link={product.link}
+                />
+              </Grid>
+            ) : (
+              <React.Fragment></React.Fragment>
+            )
+          )
         ) : buscador === 0 ? (
           <React.Fragment>
-            <Grid item>
+            <Grid item key="img">
               <img
                 className={classes.image}
                 src="/tuBuscador.png"
